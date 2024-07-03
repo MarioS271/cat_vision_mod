@@ -1,5 +1,5 @@
 # cat-vision-mod (fabric)
-
+A minecraft mod which gives you Night Vision, even if you aren't a server operator. Inspired by CatEyes by Tee6! :)
 
 <br>
 
