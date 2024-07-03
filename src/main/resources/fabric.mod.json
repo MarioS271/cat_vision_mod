@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "cat_vision",
+	"version": "${version}",
+	"name": "CatVision",
+	"description": "A minecraft mod which gives you Night Vision, even if you aren't a server operator. Inspired by CatEyes by Tee6! :)",
+	"authors": [
+		"MarioS271"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/quickcommands",
+		"sources": "https://github.com/MarioS271/quick_commands_mod",
+		"issues": "https://github.com/MarioS271/quick_commands_mod/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/cat_vision/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"net.marios271.cat_vision.CatVision"
+		],
+		"modmenu": [ "net.marios271.cat_vision.config.ModMenuImplementation" ]
+	},
+	"depends": {
+		"fabricloader": ">=0.14.0",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric": "*",
+		"fabric-api": "*",
+		"fabric-key-binding-api-v1": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}

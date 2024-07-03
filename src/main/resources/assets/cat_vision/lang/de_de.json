@@ -1,0 +1,14 @@
+{
+    "key.category.cat_vision": "CatVision",
+    "key.cat_vision.toggle_client_night_vision": "Nachtsicht umschalten",
+    "gui_title.cat_vision.config": "CatVision-Konfiguration",
+
+    "message.cat_vision.activated": "§l§7[§8Cat§6Eyes§7]§r Cat Vision wurde angeschalten",
+    "message.cat_vision.deactivated": "§l§7[§8Cat§6Eyes§7]§r Cat Vision wurde abgeschalten",
+
+    "button.cat_vision.config_close": "Speichern und Schließen",
+    "button.cat_vision.config_enabled": "[§a✔§r] Eingeschaltet",
+    "button.cat_vision.config_disabled": "[§c✖§r] Ausgeschaltet",
+    "text.cat_vision.config.remember_nv": "Nachtsicht merken",
+    "text.cat_vision.config.auto_nv": "Nachtsicht automatisch einschalten"
+}
