@@ -2,6 +2,7 @@ package net.marios271.cat_vision;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.marios271.cat_vision.config.ModConfigs;
 import net.marios271.cat_vision.event.KeyInputHandler;
 import net.minecraft.client.MinecraftClient;
@@ -31,6 +32,19 @@ public class CatVision implements ClientModInitializer {
 			if (ModConfigs.AUTO_NV){ ModConfigs.NV_STATUS = true; }
 
 			if (ModConfigs.NV_STATUS){ activate(); }
+		});
+
+		ServerPlayerEvents.AFTER_RESPAWN.register((arg1, arg2, arg3) -> {
+			if (ModConfigs.NV_STATUS) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException ie) {
+					Thread.currentThread().interrupt();
+				}
+
+				assert MinecraftClient.getInstance().player != null;
+				MinecraftClient.getInstance().player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, -1));
+			}
 		});
 	}
 
