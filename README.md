@@ -3,8 +3,8 @@ A minecraft mod which gives you Night Vision, even if you aren't a server operat
 
 <br>
 
-### Current Features (v1.0):
-- Client Night Vision!
+### Current Features (v1.1):
+- (Smart) Client Night Vision!
 
 ### Languages:
 - English
