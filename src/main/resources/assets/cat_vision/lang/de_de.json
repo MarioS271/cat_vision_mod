@@ -10,5 +10,8 @@
     "button.cat_vision.config_enabled": "[§a✔§r] Eingeschaltet",
     "button.cat_vision.config_disabled": "[§c✖§r] Ausgeschaltet",
     "text.cat_vision.config.remember_nv": "Nachtsicht merken",
-    "text.cat_vision.config.auto_nv": "Nachtsicht automatisch einschalten"
+    "text.cat_vision.config.auto_nv": "Nachtsicht automatisch einschalten",
+    "text.cat_vision.config.blindness_immunity": "Immunität gegen Blindheit",
+    "text.cat_vision.config.darkness_immunity": "Immunität gegen Dunkelheit",
+    "text.cat_vision.config.nausea_immunity": "Immunität gegen Übelkeit"
 }

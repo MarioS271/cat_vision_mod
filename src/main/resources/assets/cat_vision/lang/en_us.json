@@ -10,5 +10,8 @@
     "button.cat_vision.config_enabled": "[§a✔§r] Enabled",
     "button.cat_vision.config_disabled": "[§c✖§r] Disabled",
     "text.cat_vision.config.remember_nv": "Remember Night Vision",
-    "text.cat_vision.config.auto_nv": "Automatically enable Night Vision"
+    "text.cat_vision.config.auto_nv": "Automatically enable Night Vision",
+    "text.cat_vision.config.blindness_immunity": "Blindness Immunity",
+    "text.cat_vision.config.darkness_immunity": "Darkness Immunity",
+    "text.cat_vision.config.nausea_immunity": "Nausea Immunity"
 }

@@ -10,5 +10,8 @@
     "button.cat_vision.config_enabled": "[§a✔§r] Eigschoit",
     "button.cat_vision.config_disabled": "[§c✖§r] Ausgschoit",
     "text.cat_vision.config.remember_nv": "Nochtsicht merkn",
-    "text.cat_vision.config.auto_nv": "Nochtsicht automatisch eischoitn"
+    "text.cat_vision.config.auto_nv": "Nochtsicht automatisch eischoitn",
+    "text.cat_vision.config.blindness_immunity": "Immunität gegn Blindheit",
+    "text.cat_vision.config.darkness_immunity": "Immunität gegn Dunklheit",
+    "text.cat_vision.config.nausea_immunity": "Immunität gegn Üblkeit"
 }
