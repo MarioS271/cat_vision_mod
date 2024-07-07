@@ -28,10 +28,10 @@ public class CatVision implements ClientModInitializer {
 		ClientPlayConnectionEvents.JOIN.register((arg1, arg2, arg3) -> {
 			ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
-			if (!ModConfigs.REMEMBER_NV){ ModConfigs.NV_STATUS = false; }
-			if (ModConfigs.AUTO_NV){ ModConfigs.NV_STATUS = true; }
+			if (!ModConfigs.REMEMBER_NV) { ModConfigs.NV_STATUS = false; }
+			if (ModConfigs.AUTO_NV) { ModConfigs.NV_STATUS = true; }
 
-			if (ModConfigs.NV_STATUS){ activate(); }
+			if (ModConfigs.NV_STATUS) { MinecraftClient.getInstance().player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, -1)); }
 		});
 
 		ServerPlayerEvents.AFTER_RESPAWN.register((arg1, arg2, arg3) -> {
@@ -42,7 +42,6 @@ public class CatVision implements ClientModInitializer {
 					Thread.currentThread().interrupt();
 				}
 
-				assert MinecraftClient.getInstance().player != null;
 				MinecraftClient.getInstance().player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, -1));
 			}
 		});
@@ -50,22 +49,11 @@ public class CatVision implements ClientModInitializer {
 		ClientTickEvents.END_WORLD_TICK.register(world -> {
 			MinecraftClient client = MinecraftClient.getInstance();
 
+			if (!client.player.hasStatusEffect(StatusEffects.NIGHT_VISION) && ModConfigs.NV_STATUS) { client.player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, -1)); }
+
 			if (client.player.hasStatusEffect(StatusEffects.BLINDNESS) && ModConfigs.BLINDNESS_IMMUNITY) { client.player.removeStatusEffect(StatusEffects.BLINDNESS); }
 			if (client.player.hasStatusEffect(StatusEffects.DARKNESS) && ModConfigs.DARKNESS_IMMUNITY) { client.player.removeStatusEffect(StatusEffects.DARKNESS); }
 			if (client.player.hasStatusEffect(StatusEffects.NAUSEA) && ModConfigs.NAUSEA_IMMUNITY) { client.player.removeStatusEffect(StatusEffects.NAUSEA); }
 		});
-	}
-
-	public static void activate(){
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-
-		player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, -1));
-		player.sendMessage(Text.translatable("message.cat_vision.activated"), true);
-	}
-	public static void deactivate(){
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-
-		player.removeStatusEffect(StatusEffects.NIGHT_VISION);
-		player.sendMessage(Text.translatable("message.cat_vision.deactivated"), true);
 	}
 }
