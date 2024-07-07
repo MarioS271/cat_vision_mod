@@ -12,7 +12,7 @@
 		"sources": "https://github.com/MarioS271/quick_commands_mod",
 		"issues": "https://github.com/MarioS271/quick_commands_mod/issues"
 	},
-	"license": "MIT",
+	"license": "MarioS271 License",
 	"icon": "assets/cat_vision/icon.png",
 	"environment": "client",
 	"entrypoints": {
