@@ -7,10 +7,8 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.marios271.cat_vision.config.ModConfigs;
 import net.marios271.cat_vision.event.KeyInputHandler;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,8 +24,6 @@ public class CatVision implements ClientModInitializer {
 		LOGGER.info("Initialized " + MOD_ID);
 
 		ClientPlayConnectionEvents.JOIN.register((arg1, arg2, arg3) -> {
-			ClientPlayerEntity player = MinecraftClient.getInstance().player;
-
 			if (!ModConfigs.REMEMBER_NV) { ModConfigs.NV_STATUS = false; }
 			if (ModConfigs.AUTO_NV) { ModConfigs.NV_STATUS = true; }
 
