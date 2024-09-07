@@ -1,8 +1,8 @@
-package net.marios271.cat_vision.event;
+package net.marios271.cat_vision.idkwhatnametoput;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.marios271.cat_vision.config.ModConfigs;
+import net.marios271.cat_vision.CatVision;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -20,13 +20,13 @@ public class KeyInputHandler {
     public static void registerKeyInputs(){
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (toggleNightVisionKey.wasPressed()) {
-                if (!ModConfigs.NV_STATUS) {
-                    ModConfigs.NV_STATUS = true;
+                if (!CatVision.CONFIG.nv_status()) {
+                    CatVision.CONFIG.nv_status(true);
 
                     MinecraftClient.getInstance().player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, -1));
                     MinecraftClient.getInstance().player.sendMessage(Text.translatable("message.cat_vision.activated"), true);
                 } else {
-                    ModConfigs.NV_STATUS = false;
+                    CatVision.CONFIG.nv_status(false);
 
                     MinecraftClient.getInstance().player.removeStatusEffect(StatusEffects.NIGHT_VISION);
                     MinecraftClient.getInstance().player.sendMessage(Text.translatable("message.cat_vision.deactivated"), true);

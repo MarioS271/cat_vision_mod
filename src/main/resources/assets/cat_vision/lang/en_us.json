@@ -1,17 +1,14 @@
 {
     "key.category.cat_vision": "CatVision",
     "key.cat_vision.toggle_client_night_vision": "Toggle night vision",
-    "gui_title.cat_vision.config": "CatVision Configuration",
+    "text.config.cat_vision_config.title": "CatVision Configuration",
 
-    "message.cat_vision.activated": "§l§7[§8Cat§6Eyes§7]§r Enabled Cat Vision",
-    "message.cat_vision.deactivated": "§l§7[§8Cat§6Eyes§7]§r Disabled Cat Vision",
+    "message.cat_vision.activated": "§l§7[§8Cat§6Vision§7]§r Enabled Cat Vision",
+    "message.cat_vision.deactivated": "§l§7[§8Cat§6Vision§7]§r Disabled Cat Vision",
 
-    "button.cat_vision.config_close": "Save and Close",
-    "button.cat_vision.config_enabled": "[§a✔§r] Enabled",
-    "button.cat_vision.config_disabled": "[§c✖§r] Disabled",
-    "text.cat_vision.config.remember_nv": "Remember Night Vision",
-    "text.cat_vision.config.auto_nv": "Automatically enable Night Vision",
-    "text.cat_vision.config.blindness_immunity": "Blindness Immunity",
-    "text.cat_vision.config.darkness_immunity": "Darkness Immunity",
-    "text.cat_vision.config.nausea_immunity": "Nausea Immunity"
+    "text.config.cat_vision_config.option.remember_nv": "Remember Night Vision",
+    "text.config.cat_vision_config.option.auto_nv": "Automatically enable Night Vision",
+    "text.config.cat_vision_config.option.blindness_immunity": "Blindness Immunity",
+    "text.config.cat_vision_config.option.darkness_immunity": "Darkness Immunity",
+    "text.config.cat_vision_config.option.nausea_immunity": "Nausea Immunity"
 }

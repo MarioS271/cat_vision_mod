@@ -12,18 +12,17 @@
 		"sources": "https://github.com/MarioS271/quick_commands_mod",
 		"issues": "https://github.com/MarioS271/quick_commands_mod/issues"
 	},
-	"license": "MarioS271 License",
+	"license": "MarioS271 Protective License",
 	"icon": "assets/cat_vision/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
 			"net.marios271.cat_vision.CatVision"
-		],
-		"modmenu": [ "net.marios271.cat_vision.config.ModMenuImplementation" ]
+		]
 	},
 	"depends": {
 		"fabricloader": ">=0.14.0",
-		"minecraft": "~1.21",
+		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"fabric": "*",
 		"fabric-api": "*",

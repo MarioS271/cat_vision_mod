@@ -3,8 +3,8 @@
     "key.cat_vision.toggle_client_night_vision": "Nachtsicht umschalten",
     "gui_title.cat_vision.config": "CatVision-Konfiguration",
 
-    "message.cat_vision.activated": "§l§7[§8Cat§6Eyes§7]§r Cat Vision wurde angeschalten",
-    "message.cat_vision.deactivated": "§l§7[§8Cat§6Eyes§7]§r Cat Vision wurde abgeschalten",
+    "message.cat_vision.activated": "§l§7[§8Cat§6Vision§7]§r Cat Vision wurde angeschalten",
+    "message.cat_vision.deactivated": "§l§7[§8Cat§6Vision§7]§r Cat Vision wurde abgeschalten",
 
     "button.cat_vision.config_close": "Speichern und Schließen",
     "button.cat_vision.config_enabled": "[§a✔§r] Eingeschaltet",
