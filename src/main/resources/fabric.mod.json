@@ -12,7 +12,7 @@
 		"sources": "https://github.com/MarioS271/quick_commands_mod",
 		"issues": "https://github.com/MarioS271/quick_commands_mod/issues"
 	},
-	"license": "MarioS271 Protective License",
+	"license": "MarioS271 License",
 	"icon": "assets/cat_vision/icon.png",
 	"environment": "client",
 	"entrypoints": {
@@ -22,7 +22,7 @@
 	},
 	"depends": {
 		"fabricloader": ">=0.14.0",
-		"minecraft": "~1.21.1",
+		"minecraft": "~1.21.4",
 		"java": ">=21",
 		"fabric": "*",
 		"fabric-api": "*",
