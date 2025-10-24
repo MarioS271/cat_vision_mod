@@ -8,9 +8,9 @@
 		"MarioS271"
 	],
 	"contact": {
-		"homepage": "https://modrinth.com/mod/quickcommands",
-		"sources": "https://github.com/MarioS271/quick_commands_mod",
-		"issues": "https://github.com/MarioS271/quick_commands_mod/issues"
+		"homepage": "https://modrinth.com/mod/catvisionmod",
+		"sources": "https://github.com/MarioS271/cat_vision_mod",
+		"issues": "https://github.com/MarioS271/cat_vision_mod/issues"
 	},
 	"license": "MarioS271 License",
 	"icon": "assets/cat_vision/icon.png",
@@ -22,7 +22,7 @@
 	},
 	"depends": {
 		"fabricloader": ">=0.14.0",
-		"minecraft": "~1.21.5",
+		"minecraft": "~1.21.10",
 		"java": ">=21",
 		"fabric": "*",
 		"fabric-api": "*",

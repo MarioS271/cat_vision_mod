@@ -9,10 +9,11 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyInputHandler {
-    public static final String KEY_CATEGORY_QUICK_COMMANDS = "key.category.cat_vision";
+    public static final KeyBinding.Category CAT_VISION_CATEGORY = KeyBinding.Category.create(Identifier.of("key.cat_vision.category"));
     public static final String KEY_TOGGLE_CLIENT_NV = "key.cat_vision.toggle_client_night_vision";
 
     public static KeyBinding toggleNightVisionKey;
@@ -40,7 +41,7 @@ public class KeyInputHandler {
                 KEY_TOGGLE_CLIENT_NV,
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_COMMA,
-                KEY_CATEGORY_QUICK_COMMANDS
+                CAT_VISION_CATEGORY
         ));
 
         registerKeyInputs();
