@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyInputHandler {
-    public static final KeyBinding.Category CAT_VISION_CATEGORY = KeyBinding.Category.create(Identifier.of("key.cat_vision.category"));
+    public static final KeyBinding.Category CAT_VISION_CATEGORY = KeyBinding.Category.create(Identifier.of("key.category.cat_vision"));
     public static final String KEY_TOGGLE_CLIENT_NV = "key.cat_vision.toggle_client_night_vision";
 
     public static KeyBinding toggleNightVisionKey;
