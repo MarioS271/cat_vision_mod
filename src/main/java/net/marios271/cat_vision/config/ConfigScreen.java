@@ -1,4 +1,4 @@
-package net.marios271.cat_vision.idkwhatnametoput;
+package net.marios271.cat_vision.config;
 
 import io.wispforest.owo.config.annotation.Config;
 import io.wispforest.owo.config.annotation.ExcludeFromScreen;
