@@ -18,6 +18,9 @@
 	"entrypoints": {
 		"client": [
 			"net.marios271.cat_vision.CatVision"
+		],
+		"modmenu": [
+			"net.marios271.cat_vision.config.ModMenuIntegration"
 		]
 	},
 	"depends": {

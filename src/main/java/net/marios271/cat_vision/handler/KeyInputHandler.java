@@ -4,8 +4,8 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.marios271.cat_vision.CatVision;
+import net.marios271.cat_vision.config.ConfigData;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,17 +20,22 @@ public class KeyInputHandler {
 
     public static void registerKeyInputs(){
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (client.player == null)
+                return;
+
+            ConfigData config = CatVision.CONFIG;
+
             if (toggleNightVisionKey.consumeClick()) {
-                if (!CatVision.CONFIG.nv_status()) {
-                    CatVision.CONFIG.nv_status(true);
+                if (!config.has_nv) {
+                    config.has_nv = true;
 
-                    Minecraft.getInstance().player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, -1));
-                    Minecraft.getInstance().player.displayClientMessage(Component.translatable("message.cat_vision.activated"), true);
+                    client.player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, -1));
+                    client.player.displayClientMessage(Component.translatable("message.cat_vision.activated"), true);
                 } else {
-                    CatVision.CONFIG.nv_status(false);
+                    config.has_nv = false;
 
-                    Minecraft.getInstance().player.removeEffect(MobEffects.NIGHT_VISION);
-                    Minecraft.getInstance().player.displayClientMessage(Component.translatable("message.cat_vision.deactivated"), true);
+                    client.player.removeEffect(MobEffects.NIGHT_VISION);
+                    client.player.displayClientMessage(Component.translatable("message.cat_vision.deactivated"), true);
                 }
             }
         });

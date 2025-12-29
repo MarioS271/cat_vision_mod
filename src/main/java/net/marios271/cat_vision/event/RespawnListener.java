@@ -1,20 +1,22 @@
 package net.marios271.cat_vision.event;
 
-import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
-import net.marios271.cat_vision.config.CatVisionModConfig;
-import net.minecraft.client.Minecraft;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
+import net.marios271.cat_vision.CatVision;
+import net.marios271.cat_vision.config.ConfigData;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
 public class RespawnListener {
-    public static void register(CatVisionModConfig config) {
-        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-            Minecraft client = Minecraft.getInstance();
-            if (client.player == null)
+    public static void register() {
+        ClientEntityEvents.ENTITY_LOAD.register((entity, world) -> {
+            if (!(entity instanceof LocalPlayer player))
                 return;
 
-            if (config.nv_status() || config.auto_nv())
-                client.player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, -1));
+            ConfigData config = CatVision.CONFIG;
+
+            if (config.has_nv)
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, -1));
         });
     }
 }

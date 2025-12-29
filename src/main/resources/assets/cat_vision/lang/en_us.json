@@ -1,14 +1,15 @@
 {
     "key.category.cat_vision": "CatVision",
     "key.cat_vision.toggle_client_night_vision": "Toggle night vision",
-    "text.config.cat_vision_config.title": "CatVision Configuration",
 
     "message.cat_vision.activated": "§l§7[§8Cat§6Vision§7]§r Enabled Cat Vision",
     "message.cat_vision.deactivated": "§l§7[§8Cat§6Vision§7]§r Disabled Cat Vision",
 
-    "text.config.cat_vision_config.option.remember_nv": "Remember Night Vision",
-    "text.config.cat_vision_config.option.auto_nv": "Automatically enable Night Vision",
-    "text.config.cat_vision_config.option.blindness_immunity": "Blindness Immunity",
-    "text.config.cat_vision_config.option.darkness_immunity": "Darkness Immunity",
-    "text.config.cat_vision_config.option.nausea_immunity": "Nausea Immunity"
+    "text.cat_vision.config.title": "CatVision Configuration",
+    "text.cat_vision.config.category": "CatVision",
+    "text.cat_vision.config.option.remember_nv": "Remember Night Vision",
+    "text.cat_vision.config.option.auto_nv": "Automatically enable Night Vision",
+    "text.cat_vision.config.option.blindness_immunity": "Blindness Immunity",
+    "text.cat_vision.config.option.darkness_immunity": "Darkness Immunity",
+    "text.cat_vision.config.option.nausea_immunity": "Nausea Immunity"
 }
