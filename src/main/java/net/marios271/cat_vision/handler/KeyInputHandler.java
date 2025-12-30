@@ -13,7 +13,7 @@ import net.minecraft.world.effect.MobEffects;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyInputHandler {
-    public static final KeyMapping.Category CAT_VISION_CATEGORY = KeyMapping.Category.register(Identifier.parse("key.category.cat_vision"));
+    public static final KeyMapping.Category CAT_VISION_CATEGORY = KeyMapping.Category.register(Identifier.parse("cat_vision"));
     public static final String KEY_TOGGLE_CLIENT_NV = "key.cat_vision.toggle_client_night_vision";
 
     public static KeyMapping toggleNightVisionKey;

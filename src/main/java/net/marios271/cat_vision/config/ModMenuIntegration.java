@@ -7,6 +7,6 @@ import net.marios271.cat_vision.CatVision;
 public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return (parent) -> ConfigScreen.create(parent, CatVision.CONFIG);
+        return parent -> ConfigScreen.create(parent, CatVision.CONFIG);
     }
 }
