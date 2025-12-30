@@ -10,7 +10,7 @@ public class ConfigScreen {
     public static Screen create(Screen parent, ConfigData config) {
         ConfigBuilder builder = ConfigBuilder.create()
             .setParentScreen(parent)
-            .setTitle(Component.translatable("text.cat_vision.config.option.title"));
+            .setTitle(Component.translatable("text.cat_vision.config.title"));
 
         ConfigCategory category = builder.getOrCreateCategory(Component.translatable("text.cat_vision.config.category"));
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();

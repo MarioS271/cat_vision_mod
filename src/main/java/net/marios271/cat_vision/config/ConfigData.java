@@ -8,7 +8,7 @@ import net.marios271.cat_vision.CatVision;
 import java.io.*;
 
 public class ConfigData {
-    private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "cat_vision.json");
+    private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), CatVision.CONFIG_FILE);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public boolean remember_nv = true;
