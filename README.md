@@ -15,5 +15,5 @@ A minecraft mod which gives you Night Vision, even if you aren't a server operat
 - [Modrinth](https://modrinth.com/mod/catvision)
 - [Curseforge](https://curseforge.com/minecraft/mc-mods/catvision)
 
-<br><hr>
-Licensed under the MIT License
+<br><hr><br>
+This project is licensed under the **GNU Affero General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
