@@ -12,7 +12,7 @@
 		"sources": "https://github.com/MarioS271/cat_vision_mod",
 		"issues": "https://github.com/MarioS271/cat_vision_mod/issues"
 	},
-	"license": "MIT License",
+	"license": "AGPLv3 License",
 	"icon": "assets/cat_vision/icon.png",
 	"environment": "client",
 	"entrypoints": {
