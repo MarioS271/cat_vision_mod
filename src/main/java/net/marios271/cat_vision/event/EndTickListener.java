@@ -9,7 +9,7 @@ import net.minecraft.world.effect.MobEffects;
 
 public class EndTickListener {
     public static void register() {
-        ClientTickEvents.END_WORLD_TICK.register(world -> {
+        ClientTickEvents.END_CLIENT_TICK.register(world -> {
             Minecraft client = Minecraft.getInstance();
             if (client.player == null)
                 return;

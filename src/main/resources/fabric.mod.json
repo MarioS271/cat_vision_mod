@@ -25,11 +25,9 @@
 	},
 	"depends": {
 		"fabricloader": ">=0.14.0",
-		"minecraft": "~1.21.11",
+		"minecraft": "~26.1",
 		"java": ">=21",
-		"fabric": "*",
-		"fabric-api": "*",
-		"fabric-key-binding-api-v1": "*"
+		"fabric-api": "*"
 	},
 	"suggests": {
 		"modmenu": "*"
