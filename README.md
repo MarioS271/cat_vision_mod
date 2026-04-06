@@ -9,8 +9,9 @@ And the best part: you don't need any permission, just use it anywhere!
 **DISCLAIMER: I AM NOT LIABLE IF YOU GET BANNED FOR CHEATING USING THIS, PLEASE FOLLOW THE RULES OF WHATEVER
 SERVER/REALM/MULTIPLAYER WORLD YOU ARE PLAYING ON WHEN USING THIS MOD!**
 
-### Current Features (v1.1):
-- (Smart) Client Night Vision!
+### Current Features (v1.4):
+- Smart Client Night Vision
+- Darkness/Blindness/Nausea Immunity
 
 ### Languages:
 - English
