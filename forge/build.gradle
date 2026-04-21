@@ -1,0 +1,77 @@
+// Forge module targets MC 1.20.4 (last well-supported Forge version).
+// Check https://files.minecraftforge.net/ to see if Forge has released for MC 26.x.
+plugins {
+    id 'net.minecraftforge.gradle' version "${forge_gradle_version}"
+}
+
+evaluationDependsOn(':common')
+
+version = "${mod_version}+${forge_minecraft_version}-forge"
+group = maven_group
+base { archivesName = "${archives_base_name}-forge" }
+
+minecraft {
+    mappings channel: 'official', version: forge_minecraft_version
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                cat_vision { source sourceSets.main }
+            }
+        }
+        // No server run — client-only mod
+    }
+}
+
+// Include common source and resources directly
+sourceSets {
+    main {
+        java {
+            srcDirs += project(':common').sourceSets.main.java.srcDirs
+        }
+        resources {
+            srcDirs += project(':common').sourceSets.main.resources.srcDirs
+        }
+    }
+}
+
+repositories {
+    maven { url 'https://maven.shedaniel.me/' }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${forge_minecraft_version}-${forge_version}"
+
+    // Cloth Config: bundled via Jar-in-Jar
+    jarJar(implementation("me.shedaniel.cloth:cloth-config-forge:${cloth_config_forge_version}")) {
+        jarJar.ranged(it, "[${cloth_config_forge_version},)")
+    }
+}
+
+jarJar.enable()
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    withSourcesJar()
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+    manifest {
+        attributes([
+            'Specification-Title'   : 'cat_vision',
+            'Implementation-Title'  : project.name,
+            'Implementation-Version': project.version
+        ])
+    }
+}

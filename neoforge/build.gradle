@@ -1,0 +1,78 @@
+// TODO: Update neoforge_gradle_version in gradle.properties to the correct
+//       NeoGradle version for MC 26.1 (https://projects.neoforged.net/neoforged/neogradle)
+plugins {
+    id 'net.neoforged.gradle.userdev' version "${neoforge_gradle_version}"
+}
+
+evaluationDependsOn(':common')
+
+def mc = stonecutter.current.version
+
+version = "${mod_version}+${mc}-neoforge"
+group = maven_group
+base { archivesName = "${archives_base_name}-neoforge" }
+
+runs {
+    client {
+        client()
+        modSource project.sourceSets.main
+        // No server run — client-only mod
+    }
+}
+
+// Include common source and resources directly
+sourceSets {
+    main {
+        java {
+            srcDirs += project(':common').sourceSets.main.java.srcDirs
+        }
+        resources {
+            srcDirs += project(':common').sourceSets.main.resources.srcDirs
+        }
+    }
+}
+
+repositories {
+    maven { url 'https://maven.shedaniel.me/' }
+}
+
+// ── Version-specific dependency versions ──────────────────────────────────────
+def neoforgeVersions = ['1.21.4': neoforge_version_1214, '26.1': neoforge_version]
+def clothVersions    = ['1.21.4': cloth_config_neoforge_1214, '26.1': cloth_config_neoforge_version]
+
+def resolvedNeoForge = neoforgeVersions[mc] ?: neoforge_version
+def resolvedCloth    = clothVersions[mc]    ?: cloth_config_neoforge_version
+
+dependencies {
+    implementation "net.neoforged:neoforge:${resolvedNeoForge}"
+
+    // Cloth Config: bundled via Jar-in-Jar
+    jarJar(implementation("me.shedaniel.cloth:cloth-config-neoforge:${resolvedCloth}")) {
+        jarJar.ranged(it, "[${resolvedCloth},)")
+    }
+}
+
+jarJar.enable()
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    withSourcesJar()
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+    manifest {
+        attributes([
+            'Specification-Title': 'cat_vision',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version
+        ])
+    }
+}

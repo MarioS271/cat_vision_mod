@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "AGPLv3 License"
+issueTrackerURL = "https://github.com/MarioS271/cat_vision_mod/issues"
+
+[[mods]]
+    modId = "cat_vision"
+    version = "${file.jarVersion}"
+    displayName = "CatVision"
+    description = "Toggleable night vision and visual-effect immunity. Client-side only."
+    logoFile = "assets/cat_vision/icon.png"
+
+# side = "CLIENT" on every dependency entry prevents loading on a dedicated server.
+[[dependencies.cat_vision]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[26.1,)"
+    ordering = "NONE"
+    side = "CLIENT"
+
+[[dependencies.cat_vision]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[26.1,)"
+    ordering = "NONE"
+    side = "CLIENT"

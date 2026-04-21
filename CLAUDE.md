@@ -5,54 +5,83 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build Commands
 
 ```bash
-./gradlew build          # Build the mod jar (output in build/libs/)
-./gradlew runClient      # Launch Minecraft client with the mod loaded
-./gradlew clean          # Clean build artifacts
-./gradlew genSources     # Generate deobfuscated Minecraft sources for reference
+# Active version only (fast, use during development)
+./gradlew :fabric:build
+./gradlew :neoforge:build
+./gradlew :forge:build
+
+# All versions of one loader (Stonecutter)
+./gradlew :fabric:chiseledBuild
+./gradlew :neoforge:chiseledBuild
+
+# Every version of every loader
+./gradlew chiseledBuild
+
+# Run client for the active version
+./gradlew :fabric:runClient
+./gradlew :neoforge:runClient
+./gradlew :forge:runClient
+
+./gradlew :common:genSources    # deobfuscated MC sources for IDE
 ```
 
-No test suite exists — verification is done by running the client.
+No test suite — verification is done by running the client.
 
 ## Project Overview
 
-CatVision is a **client-side only** Fabric mod that provides toggleable night vision and immunity to negative visual effects (Blindness, Darkness, Nausea). It works without server operator permissions and persists state across sessions.
+CatVision is a **client-side only** mod (servers never load it) that provides toggleable night vision and immunity to Blindness, Darkness, and Nausea. No server operator permission required.
 
-**Mod ID:** `cat_vision`  
-**Entry point:** `net.marios271.cat_vision.CatVision` (implements `ClientModInitializer`)  
-**Java:** 21+ (targets Java 25)  
-**Minecraft:** 26.1
+**Mod ID:** `cat_vision` | **Java:** 21 | **Active MC:** 26.1
 
-## Architecture
+## Multi-Loader / Multi-Version Architecture
 
-The mod is event-driven with a shared static config instance (`CatVision.CONFIG`).
+This is a **Stonecutter + multi-module** project. No Architectury API at runtime.
 
-**Main class** (`CatVision.java`): Loads config from disk and registers all event listeners and keybindings at client startup. This is the single wiring point.
+```
+common/          ← all game logic, zero loader imports
+fabric/          ← Fabric 1.20.4 / 1.21.4 / 26.1
+neoforge/        ← NeoForge 1.21.4 / 26.1
+forge/           ← Forge 1.20.4 only
+```
 
-**Event listeners** (`event/` package): Four single-responsibility listeners:
-- `EndTickListener` — reapplies night vision and removes negative effects every tick
-- `JoinListener` — restores night vision state on world join
-- `RespawnListener` — reapplies effects after player respawn
-- `DisconnectListener` — saves config to disk on disconnect
+**Source sharing:** `fabric/`, `neoforge/`, and `forge/` each include `common/`'s source directories via `srcDirs +=` in their `sourceSets` block. No binary jar dependency between modules.
 
-**Config system** (`config/` package):
-- `ConfigData.java` — GSON-serialized settings stored in the Fabric config directory as `cat_vision.json`; holds both user preferences (toggles) and current mod state (whether NV is active)
-- `ConfigScreen.java` — Cloth Config API screen registered via ModMenu
-- `ModMenuIntegration.java` — ModMenu factory hook
+**Platform abstraction:** `CatVisionPlatform.setConfigDir(path)` is called first in each loader's entry point. `CatVisionCommon.getConfig()` is lazy and safe because the path is set before first access.
 
-**Input** (`handler/KeyInputHandler.java`): Registers the `,` keybinding and toggles night vision state, sending an overlay message to the player.
+**Event flow per loader:**
+- Fabric: `CatVisionFabric` (ClientModInitializer) → registers Fabric API events + `KeyMappingHelper`
+- NeoForge: `CatVisionNeoForge` (@Mod dist=CLIENT) → registers on NeoForge event buses
+- Forge: `CatVisionForge` (@Mod + DistExecutor.CLIENT) → registers on Forge event buses
+
+**Config screen:** `ConfigScreen.java` lives in common (Cloth Config API is multi-loader). ModMenu integration is Fabric-only. NeoForge and Forge register via `IModConfigScreenFactory` / `ConfigScreenHandler`.
+
+## Stonecutter Preprocessor
+
+Version-specific source blocks use Stonecutter comment directives. Since active version is 26.1, the `if >=1.21` branch is always active (uncommented) in VCS:
+
+```java
+//? if >=1.21 {
+client.player.sendOverlayMessage(msg);   // ← active in VCS (26.1)
+//?} else {
+/*
+client.player.displayClientMessage(msg, true);   // ← 1.20.4 fallback
+*/
+//?}
+```
+
+Switching active version: `./gradlew "Set active version to 1.20.4"` (Stonecutter task).
 
 ## Key Dependencies
 
-| Dependency | Role |
-|---|---|
-| `fabric-api` | Core event hooks (tick, join, respawn, disconnect, keybindings) |
-| `modmenu` | Exposes the config screen in the in-game mods list |
-| `cloth-config-fabric` | Provides the config GUI components |
-
-Both ModMenu and Cloth Config are optional at runtime but required at compile time.
+| Dependency | Loader | How delivered |
+|---|---|---|
+| `fabric-api` | Fabric | modImplementation |
+| `cloth-config-{fabric,neoforge,forge}` | All | Jar-in-Jar (no user download needed) |
+| `modmenu` | Fabric | modCompileOnly (optional, not bundled) |
 
 ## Adding Features
 
-- New toggleable behaviors go in a new listener in `event/`, registered in `CatVision.onInitializeClient()`
-- New config options are fields on `ConfigData` with a matching toggle in `ConfigScreen`
-- Translation keys follow the pattern `text.cat_vision.<key>` and must be added to all three lang files (`en_us.json`, `de_de.json`, `de_at.json`)
+- **New behaviors:** add a `logic/XxxLogic.java` in common with static methods, then register the event in each loader's event class
+- **New config option:** add field to `ConfigData`, add toggle to `ConfigScreen.create()`
+- **New MC version:** add version entry to `settings.gradle` stonecutter block + add version-specific dependency values to `gradle.properties` and the version maps in each loader's `build.gradle`
+- **Translation keys:** `text.cat_vision.<key>` — add to all three lang files in `common/src/main/resources/assets/cat_vision/lang/`

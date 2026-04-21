@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "cat_vision",
+  "version": "${version}",
+  "name": "CatVision",
+  "description": "Toggleable night vision and visual-effect immunity. Client-side only.",
+  "authors": ["MarioS271"],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/catvisionmod",
+    "sources": "https://github.com/MarioS271/cat_vision_mod",
+    "issues": "https://github.com/MarioS271/cat_vision_mod/issues"
+  },
+  "license": "AGPLv3 License",
+  "icon": "assets/cat_vision/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["net.marios271.cat_vision.CatVisionFabric"],
+    "modmenu": ["net.marios271.cat_vision.config.ModMenuIntegration"]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": "*",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
