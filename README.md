@@ -1,6 +1,6 @@
 ## *This mod has been rewritten, visit it on https://github.com/MarioS271/cat_vision*.
 
-# CatVision
+# CatVision v1
 
 A fabricmc minecraft mod which gives you Night Vision, even if you aren't a server operator. Inspired by CatEyes by Tee6! :)
 
